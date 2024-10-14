@@ -1,0 +1,30 @@
+/*
+	Comment
+*/
+
+body {
+    background-color: blue; /* Fond bleu */
+    color: white; /* Texte en blanc */
+    font-family: Arial, sans-serif; /* Police de caractères */
+    text-align: center; /* Centre tout le texte et les images dans le body */
+}
+
+p {
+    margin: 15px 0; /* Espacement entre les paragraphes */
+}
+
+img {
+    max-width: 100%; /* Images responsives */
+    height: auto; /* Conserve les proportions */
+}
+
+iframe {
+    display: block; /* Affiche l'iframe comme un bloc */
+    margin: 20px auto; /* Centre l'iframe */
+	
+	h1 {
+			font-size: 4em; /* Taille de la police agrandie */
+			text-align: center; /* Centrer le titre */
+			margin: 20px 0; /* Ajout d'un espacement vertical */
+		}
+}
