@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Avis - Uruma Shun Palace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #333; /* Arrière-plan sombre */
+            color: white; /* Texte en blanc */
+            font-family: Arial, sans-serif; /* Police de caractères */
+        }
+        form {
+            margin-bottom: 20px; /* Espacement sous le formulaire */
+        }
+    </style>
+</head>
+<body>
+    <h1>Avis des Visiteurs</h1>
+    <p>Partagez vos avis sur Uruma Shun Palace !</p>
+    
+    <form id="reviewForm">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="review">Votre avis :</label>
+        <textarea id="review" name="review" required></textarea>
+
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <h2>Avis Récents</h2>
+    <ul id="reviewsList"></ul>
+
+    <p><a href="index.html">Retour à la page d'accueil</a></p>
+
+    <script>
+        // Fonction pour charger les avis depuis le stockage local
+        function loadReviews() {
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            const reviewsList = document.getElementById('reviewsList');
+            reviewsList.innerHTML = ''; // Effacer la liste actuelle
+
+            reviews.forEach(review => {
+                const li = document.createElement('li');
+                li.textContent = `${review.name} : ${review.text}`;
+                reviewsList.appendChild(li);
+            });
+        }
+
+        // Charger les avis lorsque la page est chargée
+        window.onload = loadReviews;
+
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche l'envoi du formulaire
+
+            // Récupérer les valeurs du formulaire
+            const name = document.getElementById('name').value;
+            const reviewText = document.getElementById('review').value;
+
+            // Ajouter l'avis au stockage local
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push({ name: name, text: reviewText });
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            // Créer un nouvel élément de liste pour l'avis
+            const li = document.createElement('li');
+            li.textContent = `${name} : ${reviewText}`;
+
+            // Ajouter l'avis à la liste
+            document.getElementById('reviewsList').appendChild(li);
+
+            // Réinitialiser le formulaire
+            document.getElementById('reviewForm').reset();
+        });
+    </script>
+</body>
+</html>
